@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'ticket/style.css' %}">
+	{%block head %}
+	<title> Add Ticket </title>
+	{% endblock %}
+</head>
+<body style="background-color:#00b359">
+	<div class="container">
+    <div class="center">
+      <form method="post" action="{% url 'ticket:add_ticket' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Submit">
+      </form>
+    </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+{% block head %}
+
+	<style>
+		table {
+		    font-family: arial, sans-serif;
+		    border-collapse: collapse;
+		    width: 100%;
+		}
+
+		td, th {
+		    border: 1px solid #dddddd;
+		    text-align: left;
+		    padding: 8px;
+		}
+		td:nth-child(1):hover, td:nth-child(2):hover {
+			background-color: #0cc;
+		}
+
+		#id-subject {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		#left, #right {
+			display: flex;
+			align-items: center;
+		}
+	</style>
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div id="id-subject">
+		<div id="left">
+			<h1> &nbsp;&nbsp;{{ data.subject }} </h1>
+		</div>
+		<div id="right">
+			<p> Status : <span style="font-weight: bold;">{{ data.status }} </span> </p>
+			<p> &nbsp;&nbsp;&nbsp;&nbsp;Priority : <span style="font-weight: bold;">{{ data.priority }} </p>
+		</div>
+	</div>
+	<p> {{ data.created_date }} </p>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <p class="lead">{{ data.description }}</p>
+	  </div>
+	</div>
+</div>
+{% endblock %}
