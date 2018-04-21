@@ -38,11 +38,18 @@
 			<h1> &nbsp;&nbsp;{{ data.subject }} </h1>
 		</div>
 		<div id="right">
+			<i class="material-icons" style="font-size:36px"></i>
 			<p> Status : <span style="font-weight: bold;">{{ data.status }} </span> </p>
 			<p> &nbsp;&nbsp;&nbsp;&nbsp;Priority : <span style="font-weight: bold;">{{ data.priority }} </p>
 		</div>
 	</div>
 	<p> {{ data.created_date }} </p>
+	<form id="comment">
+	  <div class="form-group">
+	    <label for="exampleFormControlTextarea1">Comment Below</label>
+	    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+	  </div>
+	</form>
 	<div class="jumbotron jumbotron-fluid">
 	  <div class="container">
 	    <p class="lead">{{ data.description }}</p>
