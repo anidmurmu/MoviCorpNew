@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+		  <div class="container">
+		    <p> <a href="{% url 'ticket:list' %}"> Go to list of Tickets </a> </p>
+		    <p> <a href="{% url 'ticket:add_ticket' %}"> Add Ticket </a> </p>
+		  </div>
+		</div>
+	</div>
+
+{% endblock %}

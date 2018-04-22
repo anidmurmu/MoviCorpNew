@@ -84,7 +84,10 @@ class Comments(models.Model):
 	created_date = models.DateTimeField(auto_now_add=True)
 	modified_date = models.DateTimeField(auto_now=True)
 	emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+	def __str__(self):
+		return str(self.message)
+
 
 class CommentsAdmin(admin.ModelAdmin):
-	list_display = ('id', 'message', 'created_date', 'modified_date')
+	list_display = ('id', 'message', 'ticket_id', 'created_date', 'modified_date', 'emp_id')
 

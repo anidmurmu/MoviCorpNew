@@ -34,11 +34,18 @@ class FormTicket(forms.ModelForm):
 	# 	super(FormTicket, self).__init__(*args, **kwargs)
 	# 	self.fields['department'].choices = [(x.pk, x.name) for x in Departments.objects.all()]
 
-
 class DepartmentForm(forms.Form):
     department = forms.ChoiceField(choices = [])
 
     def __init__(self, *args, **kwargs):
         super(DepartmentForm, self).__init__(*args, **kwargs)
         self.fields['department'].choices = [(x.pk, x.get_full_name()) for x in Departments.objects.all()]
+
+class FormComment(forms.ModelForm):
+	comment = forms.CharField(widget=forms.Textarea(), required=False)
+	emp_id = forms.ModelChoiceField(queryset=Employee.objects.all())
+
+	class Meta:
+		model  = Comments
+		fields = ('comment',)
 	

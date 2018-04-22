@@ -5,7 +5,7 @@ from ticket import views
 app_name = 'ticket'
 
 urlpatterns = [
-    path('', views.all_tickets, name='all_tickets'),
+    path('', views.welcome_view, name='welcome_view'),
     path('login/', views.login_view, name='login'),
     path('list/', views.list_view, name='list'),
     path('info/', views.info_view, name='info'),

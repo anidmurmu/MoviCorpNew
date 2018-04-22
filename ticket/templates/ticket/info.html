@@ -1,6 +1,7 @@
 
 {% extends 'base.html' %}
 {% block head %}
+	<script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>
 
 	<style>
 		table {
@@ -27,6 +28,9 @@
 			display: flex;
 			align-items: center;
 		}
+		#form_comment {
+			display: none;
+		}
 	</style>
 
 {% endblock %}
@@ -38,22 +42,46 @@
 			<h1> &nbsp;&nbsp;{{ data.subject }} </h1>
 		</div>
 		<div id="right">
-			<i class="material-icons" style="font-size:36px"></i>
+			<!-- <i id="commment_icon" style="font-size:48px" class="fa">&#xf0e5;</i> -->
+			<button id="btn_comment" type="button" class="btn btn-outline-primary">comment</button>
 			<p> Status : <span style="font-weight: bold;">{{ data.status }} </span> </p>
 			<p> &nbsp;&nbsp;&nbsp;&nbsp;Priority : <span style="font-weight: bold;">{{ data.priority }} </p>
 		</div>
 	</div>
 	<p> {{ data.created_date }} </p>
-	<form id="comment">
-	  <div class="form-group">
-	    <label for="exampleFormControlTextarea1">Comment Below</label>
-	    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-	  </div>
+	{% csrf_token %}
+	<form id="form_comment" method="POST" action="{% url 'ticket:info' %}">
+	  <!-- <div class="form-group">
+	    <label for="comment_below">Comment Below</label>
+	    <textarea id="comment_section" class="form-control" rows="3"></textarea>
+	    <input type="submit" name="Submit" />
+	  </div> -->
+	  	{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="Submit" />
 	</form>
+	{% for comment in comments %}
 	<div class="jumbotron jumbotron-fluid">
 	  <div class="container">
-	    <p class="lead">{{ data.description }}</p>
+	    <p class="comments">{{ comment.message }}</p>
+	  </div>
+	</div>
+	{% endfor %}
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <p class="ticket">{{ data.description }}</p>
 	  </div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		$("#btn_comment").click(function(){
+			$("#form_comment").toggle();
+			$("#comment_section").val('');
+		});
+		if(!$("#form_comment").is(':hidden')) {
+			console.log('apple');
+		}
+	});
+</script>
 {% endblock %}
